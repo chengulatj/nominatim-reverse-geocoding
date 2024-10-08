@@ -3,10 +3,10 @@
 ## Description
 This repository demonstrates how to use the **Nominatim API** from OpenStreetMap for reverse geocoding. It allows you to convert latitude and longitude coordinates into meaningful location details, specifically extracting the **county** in which each location resides.
 
-The tool also handles coordinates in **Degrees, Minutes, Seconds (DMS)** format by converting them to decimal format for geocoding.
+The tool also handles coordinates in **Degrees-Minutes-Seconds (DMS)** format by converting them to decimal format for geocoding.
 
 ## Features
-- Convert latitude and longitude from **Degree-Minutes-Seconds** to **decimal format**.
+- Convert latitude and longitude from **Degrees-Minutes-Seconds** to **decimal format**.
 - Use the **Nominatim API** to reverse geocode the coordinates.
 - Extract and store the **county** from the reverse geocoded data.
 - Handle errors and timeouts during the API calls.
@@ -43,18 +43,18 @@ import time
 from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderTimedOut, GeocoderUnavailable
 ```
-- **pandas**: For data manipulation, specifically for reading and writing Excel files and handling the latitude/longitude coordinates.
-- **re**: Used for regular expressions to parse the latitude and longitude in **Degrees, Minutes, Seconds (DMS)** format.
-- **time**: Used to introduce delays when retrying API requests that time out.
-- **geopy**: Provides the **Nominatim** geocoder, allowing reverse geocoding of latitude and longitude coordinates.
-- **GeocoderTimedOut, GeocoderUnavailable**: Exceptions from **geopy** to handle timeout and service unavailability errors.
+- `pandas`: For data manipulation, specifically for reading and writing Excel files and handling the latitude/longitude coordinates.
+- `re`: Used for regular expressions to parse the latitude and longitude in **Degrees, Minutes, Seconds (DMS)** format.
+- `time`: Used to introduce delays when retrying API requests that time out.
+- `geopy`: Provides the **Nominatim** geocoder, allowing reverse geocoding of latitude and longitude coordinates.
+- `GeocoderTimedOut, GeocoderUnavailable`: Exceptions from **geopy** to handle timeout and service unavailability errors.
 
 ### 2. Read the Excel File
 
 ```python
 locations = pd.read_excel('SL0202_Replacement_Locations.xlsx', skiprows=1)
 ```
-- This line reads the input Excel file (`SL0202_Replacement_Locations.xlsx`) and loads it into a pandas DataFrame.  
+- This line reads the input Excel file  and loads it into a pandas DataFrame.  
 - The `skiprows=1` argument skips the first row if it contains an extra header.
 
 
@@ -83,7 +83,7 @@ def dms_to_dd(dms_str):
         dd *= -1
     return dd
 ```
-- This function converts latitude and longitude coordinates from **DMS (Degrees, Minutes, Seconds)** format to **decimal** format.  
+- This function converts latitude and longitude coordinates from **DMS** format to **decimal** format.  
 - The `re.split()` function is used to split the DMS string into degrees, minutes, seconds, and direction components.  
 - The calculation converts the DMS components into a single decimal value.  
 - The direction ('S' or 'W') makes the result negative for coordinates in the Southern or Western hemispheres.
@@ -136,14 +136,14 @@ def get_county(lat, lon):
 ```python
 latlongs.loc[:, 'County'] = latlongs.apply(lambda row: get_county(row['Latitude_dec'], row['Longitude_dec']), axis=1)
 ```
-This applies the `get_county()` function to each row of the DataFrame, reverse geocoding the decimal latitude and longitude to obtain the county.  
+The code applies the `get_county()` function to each row of the DataFrame, reverse geocoding the decimal lat/long to obtain the county.  
 The `County` column is added to the `latlongs` DataFrame.
 
 ### 9. Add the newly added county column to the original dataframe
 ```python
 locations['County'] = latlongs['County']
 ```
-The above code adss the newly generated `County` column from the `latlongs` DataFrame back into the original `locations` DataFrame.
+The above code ads the newly generated `County` column from the `latlongs` DataFrame back into the original `locations` DataFrame.
 
 ### 10. Save the updated dataframe to a desired location
 ```python
