@@ -3,7 +3,7 @@
 ## Description
 This repository demonstrates how to use the **Nominatim API** from OpenStreetMap for reverse geocoding. It allows you to convert latitude and longitude coordinates into meaningful location details, specifically extracting the **county** in which each location resides.
 
-The tool also handles coordinates in **Degrees, Minutes, Seconds (DMS)** format by converting them to decimal format for geocoding. The results are stored in a CSV file for further analysis.
+The tool also handles coordinates in **Degrees, Minutes, Seconds (DMS)** format by converting them to decimal format for geocoding.
 
 ## Features
 - Convert latitude and longitude from **Degree-Minutes-Seconds** to **decimal format**.
