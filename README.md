@@ -25,11 +25,11 @@ pip install pandas geopy openpyxl
 ```
 
 ### Package Details:
-'pandas': For data manipulation and analysis.
-**geopy**: For geocoding using the Nominatim API.
-**openpyxl**: For reading and writing Excel files.
+- `pandas`: For data manipulation and analysis.
+- `geopy`: For geocoding using the Nominatim API.
+- `openpyxl`: For reading and writing Excel files.
 
-## Code Explanation
+## Usage
 
 Below is a step-by-step explanation of the code used in the colab notebook linked below:
 
