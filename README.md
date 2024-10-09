@@ -139,7 +139,7 @@ latlongs.loc[:, 'County'] = latlongs.apply(lambda row: get_county(row['Latitude_
 The code applies the `get_county()` function to each row of the DataFrame, reverse geocoding the decimal lat/long to obtain the county.  
 The `County` column is added to the `latlongs` DataFrame.
 
-### 9. Add the newly added county column to the original dataframe
+### 9. Add the newly generated county column to the original dataframe
 ```python
 locations['County'] = latlongs['County']
 ```
@@ -149,7 +149,7 @@ The above code ads the newly generated `County` column from the `latlongs` DataF
 ```python
 locations.to_excel('SL0202_Replacement_Locations_with_County.xlsx', index=False)
 ```
-- The code saves the updated DataFrame to a new Excel fil  
+- The code saves the updated DataFrame to a new Excel file  
 - The `index=False` argument ensures that the row index isn't saved in the Excel file.
 
 ### License
